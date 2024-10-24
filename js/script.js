@@ -36,6 +36,7 @@ class menuHamburguer{
         return this;
     }
 }
+//instância para menuHamburguer
 const mobileNavbar = new menuHamburguer(
     ".menuHamburguer",
     ".nav-links",

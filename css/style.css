@@ -120,6 +120,7 @@ nav {
     margin-right: 30px;
 }
 
+/*RESPONSIVADE CELULAR*/
 @media (max-width: 768px){
     body{
         overflow-x: hidden;
