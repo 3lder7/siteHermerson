@@ -61,6 +61,7 @@ let itemWidth = items[0].offsetWidth + 20;
 const intervalTime = 2500; 
 let index = 0;
 
+//função
 function showSlide() {
     const offset = -index * itemWidth;
     carouselContainer.style.transform = `translateX(${offset}px)`;
