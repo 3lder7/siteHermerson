@@ -1,3 +1,3 @@
 # siteHermerson
-Site em processo de construção para a empresa a qual trabalho atualmente.
+Site em processo de construção para a empresa a qual trabalhei.
 Finalizado.
