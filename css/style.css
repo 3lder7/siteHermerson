@@ -237,26 +237,64 @@ nav {
     margin-left: 50px;
 }
 
-/*logos representadas*/
-.logos {
+.linkedin-link {
+    display: inline-flex;
+    text-decoration: none;
+    color: #0e76a8;
+    font-weight: bold;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 20px;
+    vertical-align: middle;
+}
+
+.logo-linkedin {
+    width: 30px;
+    height: 30px;
+    margin-left: 8px;
+    margin-top: 20px;
+    transition: transform 0.3s ease;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+/* --- SEÇÃO PARCEIROS --- */
+.parceiros {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #fcfcfc; 
+    border-radius: 20px;
+}
+
+.parceiros h2 {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logos-parceiros {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
     flex-wrap: wrap;
-    gap: 90px; 
-    justify-content: center; 
-    padding: 20px;
 }
 
-.logo2 {
-    max-width: 150px; 
-    height: auto; 
-    transition: transform 0.3s ease-in-out; 
-    background-color: #990e0e;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+.logo-parceiro {
+    width: 230px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.logo2:hover {
-    transform: scale(1.1);
+.logo-parceiro:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
+
 
 /*---------------PARTE INFERIOR 2 ---------------*/
 .container2 {
@@ -484,7 +522,7 @@ nav {
 }
 
 
-/* CSS para o carrossel  CHATGPT*/
+/* CSS para o carrossel*/
 .carousel {
     position: relative;
     width: 60%; /* Ajusta a largura do carrossel para 60% da largura do contêiner pai */
@@ -517,6 +555,3 @@ nav {
     height: auto;
     border-radius: 10px;
 }
-
-
-
