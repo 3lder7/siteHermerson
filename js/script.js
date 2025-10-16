@@ -1,84 +1,110 @@
-class menuHamburguer{
-    //construtor para inicializar os elementos do menu
-    constructor(menuHamburguer, navList, navLinks){
+// Classe do menu hambúrguer
+class menuHamburguer {
+    // Construtor para inicializar os elementos do menu
+    constructor(menuHamburguer, navList, navLinks) {
         this.mobileMenu = document.querySelector(menuHamburguer);
         this.navList = document.querySelector(navList);
         this.navLinks = document.querySelectorAll(navLinks);
         this.activeClass = "active";
 
-        this.handleClick =  this.handleClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
-    //método para animar os links de navegação
-    animateLinks(){
+
+    // Método para animar os links de navegação
+    animateLinks() {
         this.navLinks.forEach((link) => {
             link.style.animation
-            ? (link.style.animation = "")
-            : (link.style.animation = `navLinkFade 0.5s ease forwards 0.3s`);
+                ? (link.style.animation = "")
+                : (link.style.animation = `navLinkFade 0.5s ease forwards 0.3s`);
         });
     }
 
-    //método para lidar com o clique no menu
-    handleClick(){
+    // Método para lidar com o clique no menu
+    handleClick() {
         this.navList.classList.toggle(this.activeClass);
         this.animateLinks();
     }
 
-    //método para adicionar evento de clique ao menu
-    addClickEvent(){
+    // Método para adicionar evento de clique ao menu
+    addClickEvent() {
         this.mobileMenu.addEventListener("click", this.handleClick);
     }
 
-    //método para inicializar o menu
-    init(){
-        if(this.mobileMenu){
+    // Método para inicializar o menu
+    init() {
+        if (this.mobileMenu) {
             this.addClickEvent();
         }
         return this;
     }
 }
-//instância para menuHamburguer
+
+// Instância do menuHamburguer
 const mobileNavbar = new menuHamburguer(
     ".menuHamburguer",
     ".nav-links",
-    ".nav-links li",
+    ".nav-links li"
 );
 mobileNavbar.init();
 
-//manipulação de clique em um botão, do footer
+
+// Manipulação de clique no botão do footer (Perguntas Frequentes)
 document.getElementById('btnID').addEventListener('click', function() {
-    var content = document.getElementById('caixaID');
-    if (content.classList.contains('show')) {
-        content.classList.remove('show');
-    } else {
-        content.classList.add('show');
-    }
+    const content = document.getElementById('caixaID');
+    content.classList.toggle('show');
 });
 
-//carrossel de itens
+
+// ==================== CARROSSEL ==================== //
 const carouselContainer = document.querySelector('.carousel-container');
 const items = document.querySelectorAll('.servicos');
 let itemWidth = items[0].offsetWidth + 20;
-const intervalTime = 2500; 
+const intervalTime = 2500;
 let index = 0;
 
-//função
+// Função para exibir o slide atual
 function showSlide() {
     const offset = -index * itemWidth;
     carouselContainer.style.transform = `translateX(${offset}px)`;
 }
 
-//função para iniciar a reprodução automática do carrossel
+// Função para iniciar o autoplay do carrossel
 function startAutoplay() {
     setInterval(() => {
-        index = (index + 3) % items.length; 
+        index = (index + 3) % items.length;
         showSlide();
     }, intervalTime);
 }
 
-startAutoplay();//inicia a reprodução automática
+startAutoplay(); // Inicia o carrossel automático
 
-//evento para redimensionar a janela
+// Atualiza tamanho dos itens ao redimensionar
 window.addEventListener('resize', () => {
     itemWidth = items[0].offsetWidth + 20;
-    showSlide(); 
+    showSlide();
+});
+
+
+// ==================== AUTOPLAY DO VÍDEO DE FUNDO ==================== //
+document.addEventListener('DOMContentLoaded', function () {
+    const video = document.querySelector('header video');
+
+    if (video) {
+        // Tenta iniciar automaticamente
+        const playPromise = video.play();
+
+        if (playPromise !== undefined) {
+            playPromise
+                .then(() => {
+                    console.log('🎬 Vídeo de fundo iniciado automaticamente');
+                })
+                .catch(error => {
+                    console.warn('⚠️ Autoplay bloqueado — tentando iniciar silenciosamente...');
+                    video.muted = true;
+                    video.play().catch(() => {
+                        console.error('🚫 Mesmo mudo, o navegador bloqueou o autoplay. Requer interação do usuário.');
+                    });
+                });
+        }
+    }
 });
