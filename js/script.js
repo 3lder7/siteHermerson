@@ -86,13 +86,39 @@ window.addEventListener('resize', () => {
 
 // Novo código para tentar autoplay do vídeo
 document.addEventListener('DOMContentLoaded', () => {
-    const video = document.querySelector('#backgroundVideo');  // Seleciona o vídeo pelo ID
+    const video = document.querySelector('#backgroundVideo');
+    const playButton = document.getElementById('playVideoButton');  // Botão de fallback
+    
     if (video) {
-        video.play().then(() => {
-            console.log('Vídeo está sendo reproduzido');
-        }).catch(error => {
-            console.error('Erro ao reproduzir o vídeo automaticamente:', error);
-            // Se autoplay falhar, você pode adicionar uma mensagem ou um botão para o usuário iniciar manualmente
+        // Tenta reproduzir o vídeo automaticamente
+        const playVideo = () => {
+            video.play().then(() => {
+                console.log('Vídeo está sendo reproduzido');
+                // Se reproduzir com sucesso, esconda o botão
+                playButton.classList.remove('visible');
+            }).catch(error => {
+                console.error('Erro ao reproduzir o vídeo automaticamente:', error);
+                // Se falhar, mostre o botão de fallback
+                playButton.classList.add('visible');
+            });
+        };
+        
+        // Tenta reproduzir imediatamente (pode falhar em mobile)
+        playVideo();
+        
+        // Adiciona ouvidor para a primeira interação do usuário
+        document.body.addEventListener('click', playVideo, { once: true });  // Executa apenas uma vez
+        document.body.addEventListener('touchstart', playVideo, { once: true });  // Para dispositivos móveis
+    }
+    
+    // Adiciona evento de clique no botão de fallback
+    if (playButton) {
+        playButton.addEventListener('click', () => {
+            const video = document.querySelector('#backgroundVideo');
+            if (video) {
+                video.play();  // Reproduz o vídeo quando o botão é clicado
+                playButton.classList.remove('visible');  // Esconde o botão após o clique
+            }
         });
     }
 });
