@@ -525,9 +525,9 @@ nav {
 /* CSS para o carrossel*/
 .carousel {
     position: relative;
-    width: 60%; /* Ajusta a largura do carrossel para 60% da largura do contêiner pai */
-    margin: auto; /* Centraliza o carrossel */
-    overflow: hidden; /* Oculta o conteúdo fora da área visível */
+    width: 60%;
+    margin: auto;
+    overflow: hidden;
 }
 
 .carousel-wrapper {
@@ -536,22 +536,85 @@ nav {
 
 .carousel-container {
     display: flex;
-    transition: transform 0.5s ease-in-out; /* Transição suave */
+    transition: transform 0.5s ease-in-out;
 }
 
 .servicos {
-    flex: 0 0 13%; /* Largura reduzida dos itens */
-    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+    flex: 0 0 13%;
+    box-sizing: border-box;
     text-align: center;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin: 0 100px; /* Margem lateral reduzida */
+    margin: 0 100px;
 }
 
 .servicos img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+}
+
+/* ===== AJUSTES RESPONSIVOS ESPECÍFICOS ===== */
+
+/* --- Carrossel de Serviços (mobile) --- */
+@media (max-width: 768px) {
+    .carousel {
+        width: 90%;
+    }
+
+    .carousel-container {
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .servicos {
+        flex: 0 0 100%;
+        margin: 0 10px;
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .servicos img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* --- Parceiros (mobile) --- */
+@media (max-width: 768px) {
+    .logos-parceiros {
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px;
+        scroll-behavior: smooth;
+    }
+
+    .logo-parceiro {
+        width: 90px;
+        height: auto;
+        flex-shrink: 0;
+    }
+
+    .parceiros h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* --- Ajuste extra para telas muito pequenas --- */
+@media (max-width: 480px) {
+    .carousel {
+        width: 100%;
+    }
+
+    .servicos {
+        max-width: 300px;
+        padding: 15px;
+    }
+
+    .logo-parceiro {
+        width: 75px;
+    }
 }
