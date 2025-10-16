@@ -84,27 +84,15 @@ window.addEventListener('resize', () => {
     showSlide();
 });
 
-
-// ==================== AUTOPLAY DO VÍDEO DE FUNDO ==================== //
-document.addEventListener('DOMContentLoaded', function () {
-    const video = document.querySelector('header video');
-
+// Novo código para tentar autoplay do vídeo
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.querySelector('#backgroundVideo');  // Seleciona o vídeo pelo ID
     if (video) {
-        // Tenta iniciar automaticamente
-        const playPromise = video.play();
-
-        if (playPromise !== undefined) {
-            playPromise
-                .then(() => {
-                    console.log('🎬 Vídeo de fundo iniciado automaticamente');
-                })
-                .catch(error => {
-                    console.warn('⚠️ Autoplay bloqueado — tentando iniciar silenciosamente...');
-                    video.muted = true;
-                    video.play().catch(() => {
-                        console.error('🚫 Mesmo mudo, o navegador bloqueou o autoplay. Requer interação do usuário.');
-                    });
-                });
-        }
+        video.play().then(() => {
+            console.log('Vídeo está sendo reproduzido');
+        }).catch(error => {
+            console.error('Erro ao reproduzir o vídeo automaticamente:', error);
+            // Se autoplay falhar, você pode adicionar uma mensagem ou um botão para o usuário iniciar manualmente
+        });
     }
 });
